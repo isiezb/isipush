@@ -167,7 +167,13 @@
           // Only add event listener if it doesn't already exist
           if (!storyComponent._hasUpdateListener) {
             storyComponent.addEventListener('story-updated', () => {
+              // Add the animation class before making it visible
+              storyResult.classList.add('results-container'); 
               storyResult.classList.remove('hidden');
+              // Optional: Remove the class after animation completes to allow re-triggering
+              storyResult.addEventListener('animationend', () => {
+                storyResult.classList.remove('results-container');
+              }, { once: true });
             });
             storyComponent._hasUpdateListener = true;
             console.log('Added story-updated listener to story-content component');

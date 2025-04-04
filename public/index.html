@@ -51,30 +51,45 @@
     </div>
 
     <div class="tab-content active" id="generator-tab">
-      <story-form></story-form>
-      <div id="story-result" class="story-result hidden">
-        <story-content id="storyDisplayContainer"></story-content>
-        <div class="story-actions">
-          <!-- Continue Story button removed -->
+      <div class="card card-primary">
+        <h3 class="card-title">Create a Story</h3>
+        <div class="card-content">
+          <story-form></story-form>
         </div>
-        <div id="quizContainer" class="hidden">
-          <quiz-component id="quizComponentContainer"></quiz-component>
-        </div>
-        <div id="continuation-container" class="continuation-container">
-          <story-continuation id="storyContinuationContainer"></story-continuation>
+      </div>
+
+      <div id="story-result" class="story-result card hidden">
+        <h3 class="card-title">Your Story</h3>
+        <div class="card-content">
+          <story-content id="storyDisplayContainer"></story-content>
+          <div class="story-actions">
+            <!-- Continue Story button removed -->
+          </div>
+          <div id="quizContainer" class="hidden">
+            <quiz-component id="quizComponentContainer"></quiz-component>
+          </div>
+          <div id="continuation-container" class="continuation-container">
+            <story-continuation id="storyContinuationContainer"></story-continuation>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="tab-content" id="my-stories-tab">
-      <div class="my-stories-header">
-        <h2>My Stories</h2>
-        <p>Stories you've created and saved</p>
+      <div class="card">
+        <div class="card-content">
+          <div class="my-stories-header">
+            <h2 class="card-title">My Stories</h2>
+            <p>Stories you've created and saved</p>
+          </div>
+          <stories-grid id="storiesGridContainer"></stories-grid>
+        </div>
       </div>
-      <stories-grid id="storiesGridContainer"></stories-grid>
-      <div id="selected-story-view" class="hidden">
-        <button id="backToListBtn" class="btn btn-secondary">Back to List</button>
-        <story-content id="storyContentContainer"></story-content>
+      <div id="selected-story-view" class="card hidden">
+        <div class="card-content">
+          <button id="backToListBtn" class="btn btn-secondary mb-3">Back to List</button>
+          <story-content id="storyContentContainer"></story-content>
+        </div>
       </div>
     </div>
   </main>

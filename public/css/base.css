@@ -149,4 +149,13 @@ p {
 
 small {
   font-size: 0.875rem;
+}
+
+/* Base transition for interactive elements */
+button,
+a,
+input,
+select,
+textarea {
+  transition: all 0.2s ease-out;
 } 
