@@ -4,6 +4,21 @@
 
 // Initialize the application
 (function initApp() {
+  // Detect keyboard navigation to apply special focus styles - NEW
+  function handleFirstTab(e) {
+    if (e.key === 'Tab') {
+      document.body.classList.add('keyboard-user');
+      // Add a class to use the specific keyboard-focus style
+      document.querySelectorAll('a, button, input, select, textarea, [tabindex]').forEach(el => {
+          if (!el.classList.contains('no-keyboard-focus')) { // Optional: allow opting out
+              el.classList.add('keyboard-focus');
+          }
+      });
+      window.removeEventListener('keydown', handleFirstTab);
+    }
+  }
+  window.addEventListener('keydown', handleFirstTab);
+
   // Add global event listeners
   document.addEventListener('DOMContentLoaded', onDocumentReady);
   window.addEventListener('error', handleGlobalError);

@@ -490,4 +490,48 @@ Highlight Effects
 
 .loading-indicator {
   animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* 
+============================
+Focus Styles (Component Level)
+============================
+*/
+
+/* Subtle focus styles for cards or container elements */
+.card:focus,
+.interactive-container:focus {
+  box-shadow: 0 0 0 2px var(--focus-ring-color), var(--shadow-md); /* Combine focus ring and existing shadow */
+}
+
+/* Focus-within styles for form groups */
+.form-group:focus-within label {
+  /* Use --primary instead of --primary-color */
+  color: var(--primary); 
+  transition: color 0.2s ease;
+}
+
+/* High contrast focus option for accessibility settings */
+.high-contrast *:focus {
+  outline: 2px solid black !important;
+  outline-offset: 2px !important;
+  box-shadow: none !important;
+}
+
+/* Keyboard focus utility (Moved to base.css) */
+/* Removed:
+.keyboard-focus:focus { ... }
+*/
+
+/* 
+============================
+Header Styles
+============================
+*/
+/* Add Accent sections could use a gradient background */
+.header-section {
+  /* Using --primary and --primary-700 for dark variant */
+  background: linear-gradient(135deg, var(--primary), var(--primary-700)); 
+  color: white;
+  padding: 2rem;
 } 

@@ -1,3 +1,6 @@
+/* Add specific font import if needed, although Inter is linked in HTML */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 /* 
 ============================
 CSS Variables / Theme
@@ -37,15 +40,40 @@ CSS Variables / Theme
   --text-secondary: #6c757d;
   --border: rgba(0, 0, 0, 0.1);
   
-  /* Typography */
-  --font-body: 'Source Serif Pro', Georgia, 'Times New Roman', serif;
-  --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  /* Typography scale - NEW */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+  --font-size-4xl: 2.25rem;   /* 36px */
+  
+  /* Font weights - NEW */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Line heights - NEW */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  
+  /* Letter spacing - NEW */
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
   
   /* Shadows */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
   --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+
+  /* Focus ring color - NEW */
+  --focus-ring-color: rgba(59, 130, 246, 0.5); /* Semi-transparent primary blue */
 }
 
 /* 
@@ -68,11 +96,16 @@ html {
 
 body {
   min-height: 100vh;
-  font-family: var(--font-body);
-  font-size: 16px;
-  color: var(--text);
-  background-color: var(--bg);
-  line-height: 1.5;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: var(--font-size-base);
+  color: var(--neutral-900);
+  background-color: var(--neutral-100);
+  background-image: 
+    radial-gradient(circle at 25px 25px, rgba(0, 0, 0, 0.02) 2%, transparent 2.5%),
+    radial-gradient(circle at 75px 75px, rgba(0, 0, 0, 0.02) 2%, transparent 2.5%);
+  background-size: 100px 100px;
+  background-position: 0 0, 50px 50px;
+  line-height: var(--line-height-normal);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -115,40 +148,79 @@ Typography
 ============================
 */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  line-height: 1.2;
-  color: var(--text);
-  margin-bottom: 1rem;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  line-height: var(--line-height-tight);
+  font-weight: var(--font-weight-semibold);
+  color: var(--neutral-900);
 }
 
 h1 {
-  font-size: 2.5rem;
-  font-weight: 800;
+  font-size: var(--font-size-4xl);
+  letter-spacing: var(--letter-spacing-tight);
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: var(--font-size-3xl);
 }
 
 h3 {
-  font-size: 1.5rem;
+  font-size: var(--font-size-2xl);
 }
 
 h4 {
-  font-size: 1.25rem;
+  font-size: var(--font-size-xl);
 }
 
-h5, h6 {
-  font-size: 1rem;
+h5 {
+  font-size: var(--font-size-lg);
+}
+
+h6 {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
 }
 
 p {
+  margin-top: 0;
   margin-bottom: 1rem;
 }
 
 small {
-  font-size: 0.875rem;
+  font-size: var(--font-size-sm);
+}
+
+/* Add new text variations */
+.text-sm {
+  font-size: var(--font-size-sm);
+}
+
+.text-lg {
+  font-size: var(--font-size-lg);
+}
+
+.text-muted {
+  color: var(--neutral-700);
+}
+
+.text-bold {
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Add story text specific styling */
+.story-text {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  max-width: 70ch; /* Optimal reading width */
+}
+
+/* Add form label styling */
+label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: 0.25rem;
+  display: block;
+  color: var(--neutral-700);
 }
 
 /* Base transition for interactive elements */
@@ -158,4 +230,38 @@ input,
 select,
 textarea {
   transition: all 0.2s ease-out;
+}
+
+/* Global focus styles - NEW */
+*:focus {
+  outline: none; /* Remove default outline */
+}
+
+/* Custom focus styling for interactive elements - NEW */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus,
+[tabindex]:focus {
+  /* Use --primary instead of --primary-color */
+  box-shadow: 0 0 0 3px var(--focus-ring-color);
+  border-color: var(--primary) !important; 
+  transition: box-shadow 0.2s ease;
+}
+
+/* Keyboard focus utility (Moved from components.css) */
+.keyboard-focus:focus {
+  /* Use --primary instead of --primary-color */
+  box-shadow: 0 0 0 3px var(--focus-ring-color);
+  border-color: var(--primary) !important; 
+}
+
+/* Add alternate background utility */
+.alternate-bg {
+  background-color: var(--neutral-100);
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.025) 1px, transparent 1px);
+  background-size: 50px 50px;
 } 
